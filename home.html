@@ -1,0 +1,133 @@
+<head>
+    <title>אישור הורים צופי ים</title>
+</head>
+<body>
+    <p>סוג פעילות</p>
+    <select id="activity">
+        <option value="1">שישבת</option>
+        <option value="2">תחרות חתירה</option>
+        <option value="3">קורסים - מחנה קיץ</option>
+        <option value="4">טיול שבטי</option>
+        <option value="5">הפלגה ארוכה</option>
+        <option value="6">חתירה ארוכה</option>
+        <option value="7">הקפת כינרת</option>
+        <option value="8">חנוכה דרום</option>
+    </select>
+
+    <p>מקום הפעילות</p>
+    <input type="text" placeholder="תל אביב" id="location"/>
+
+    <p>תאריך התחלה</p>
+    <input type="date" id="start_date"/>
+
+    <p>תאריך סיום</p>
+    <input type="date" id="end_date"/>
+
+    <p>שם פרטי</p>
+    <input type="text" id="first_name"/>
+
+    <p>שם מפשחה</p>
+    <input type="text" id="last_name"/>
+
+    <p>מספר תעודת זהות</p>
+    <input type="text" id="id_number"/>
+
+    <p>מגדר</p>
+    <input type="radio" id="boy" name="gender" value="boy" />
+    <label for="boy">זכר</label><br>
+    <input type="radio" id="girl" name="gender" value="girl" />
+    <label for="girl">נקבה</label><br>
+
+    <p>תאריך לידה</p>
+    <input type="date" id="date_of_birth"/>
+
+    <p>כיתה</p>
+    <select id="grade">
+        <option value="1">ה</option>
+        <option value="2">ו</option>
+        <option value="3">ז</option>
+        <option value="4">ח</option>
+        <option value="5">ט</option>
+        <option value="6">י</option>
+        <option value="7">יא</option>
+        <option value="8">יב</option>
+    </select>
+
+    <p>הצהרת בריאות</p>
+    <select id="health">
+        <option value="1">לא ידוע לי על מגבלה בריאותית המונעת מבני/בתי להשתתף בפעילות הנערכת בתנועת הצופים</option>
+        <option value="2">יש לבני/בתי מוגבלות בריאותית המונעת השתתפות מלאה/חלקית בפעילות הנדרשת</option>
+    </select>
+
+    <div id="not_healthy">
+        <p>הפעילות שבה בני/בתי נמנע/ת מהשתתפות</p>
+        <input type="checkbox" id="physical_activity" />
+        <label for="physical_activity">פעילות גופנית</label>
+        <input type="checkbox" id="trips" />
+        <label for="trips">טיולים</label>
+        <input type="checkbox" id="other_activity" />
+        <label for="other_activity">פעילות אחרת</label>
+
+        <input type="text" id="other_activity_name">
+
+        <p>תיאור המגבלה</p>
+        <input type="text" id="restriction_description" />
+
+        <p>אישור ניתן על ידי - שם מלא</p>
+        <input type="text" id="doctor_name"/>
+
+        <p>לתקופה של - שנים, חודשים, שבועות</p>
+        <input type="text" id="duration"/>
+    </div>
+
+    <input type="checkbox" id="astma" />
+    <label for="astma">יש לבני מגבלה בריאותית כרונית - כגון אסמה, סוכרת נעורים, אפילפסיה וכו</label>
+
+    <div id="astma_div">
+        <p>אישור ניתן על ידי - שם מלא</p>
+        <input type="text" id="doctor_name_astma"/>
+
+        <p>לתקופה של - שנים, חודשים, שבועות</p>
+        <input type="text" id="duration_astma"/>
+
+        <p>שם מלא לפנייה במצוקה</p>
+        <input type="text" id="name_astma" />
+
+        <p>כתובת</p>
+        <input type="text" id="addr" />
+
+        <p>מספר טלפון</p>
+        <input type="text" id="phone_astma" />
+    </div>
+
+    <input type="checkbox" id="medicine" />
+    <label for="medicine">בני / בתי מקבל/ת טיפול תרופתי </label>
+
+    <div id="medicine_div">
+        <p>סוג התרופה</p>
+        <input type="text" id="medicine_type" />
+        
+        <p>תיאור אופן הטיפול</p>
+        <input type="text" id="medicine_take" />
+    </div>
+
+    <input type="checkbox" id="self" />
+    <label for="self">בני / בתי נעזר/ת בכוחות עצמו/עצמה בציוד רפואי - משאף, ערכת זריקות וכדו  </label>
+
+    <input type="text" id="self_text" />
+
+    <input type="checkbox" id="sea" />
+    <label for="sea"> הנני מאשר/ת לבני/בתי להשתתף בפעילות ימית</label>
+
+    <input type="checkbox" id="swim" />
+    <label for="swim">בני/בתי יודע/ת לשחות</label>
+
+    <input type="checkbox" id="night" />
+    <label for="night">אני מאשר/ת לבני/בתי להשתתף בפעילות של רחצת לילה</label>
+
+    <p>תאריך החתימה</p>
+    <input type="date" id="sign_date" />
+
+    <p>שם ההורה</p>
+    <input type="text" id="parent_name" />
+</body>
