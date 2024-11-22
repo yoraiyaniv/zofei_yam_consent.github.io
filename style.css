@@ -1,0 +1,115 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure it takes the full viewport height */
+}
+
+/* Container */
+.container {
+    width: 80%; /* Width of the content */
+    max-width: 900px; /* Limit the max width */
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Headings and Paragraphs */
+h1, p {
+    text-align: center;
+}
+
+/* Inputs and Selects */
+input[type="text"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+/* Radio Buttons and Checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+/* Canvas */
+canvas {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+    margin: 10px auto;
+    cursor: crosshair;
+}
+
+/* Buttons */
+button {
+    display: block;
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}
+
+
+.preview {
+    margin-top: 20px;
+}
+img {
+    width: 200px;
+    height: 400px;
+    object-fit: cover; /* Ensures the image fits the dimensions */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}

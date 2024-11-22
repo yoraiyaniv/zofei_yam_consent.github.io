@@ -1,7 +1,10 @@
 <head>
     <title>אישור הורים צופי ים</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body dir="rtl">
+    <div id="conatiner">
     <p>סוג פעילות</p>
     <select id="activity">
         <option value="1">שישבת</option>
@@ -18,15 +21,15 @@
     <input type="text" placeholder="תל אביב" id="location"/>
 
     <p>תאריך התחלה</p>
-    <input type="date" id="start_date"/>
+    <input type="text" id="start_date"/>
 
     <p>תאריך סיום</p>
-    <input type="date" id="end_date"/>
+    <input type="text" id="end_date"/>
 
     <p>שם פרטי</p>
     <input type="text" id="first_name"/>
 
-    <p>שם מפשחה</p>
+    <p>שם משפחה</p>
     <input type="text" id="last_name"/>
 
     <p>מספר תעודת זהות</p>
@@ -39,7 +42,7 @@
     <label for="girl">נקבה</label><br>
 
     <p>תאריך לידה</p>
-    <input type="date" id="date_of_birth"/>
+    <input type="text" id="date_of_birth"/>
 
     <p>כיתה</p>
     <select id="grade">
@@ -54,12 +57,12 @@
     </select>
 
     <p>הצהרת בריאות</p>
-    <select id="health">
+    <select id="health" onchange="health_check()">
         <option value="1">לא ידוע לי על מגבלה בריאותית המונעת מבני/בתי להשתתף בפעילות הנערכת בתנועת הצופים</option>
         <option value="2">יש לבני/בתי מוגבלות בריאותית המונעת השתתפות מלאה/חלקית בפעילות הנדרשת</option>
-    </select>
+    </select><br>
 
-    <div id="not_healthy">
+    <div id="not_healthy" style="display: none;">
         <p>הפעילות שבה בני/בתי נמנע/ת מהשתתפות</p>
         <input type="checkbox" id="physical_activity" />
         <label for="physical_activity">פעילות גופנית</label>
@@ -78,12 +81,29 @@
 
         <p>לתקופה של - שנים, חודשים, שבועות</p>
         <input type="text" id="duration"/>
-    </div>
 
-    <input type="checkbox" id="astma" />
+        <br>
+
+        <p>אישור רפואי</p>
+        <input type="file" id="fileInput">
+
+        <br>
+
+        <div class="preview">
+            <img id="previewImage" src="" style="display: none;">
+            <div class="buttons">
+                <button id="deleteButton">מחק תמונה</button>
+            </div>
+        </div>    
+
+    </div><br>
+
+    <input type="checkbox" id="astma" onchange="asthma_check()"/>
     <label for="astma">יש לבני מגבלה בריאותית כרונית - כגון אסמה, סוכרת נעורים, אפילפסיה וכו</label>
 
-    <div id="astma_div">
+    <br>
+
+    <div id="astma_div" style="display: none;">
         <p>אישור ניתן על ידי - שם מלא</p>
         <input type="text" id="doctor_name_astma"/>
 
@@ -98,12 +118,31 @@
 
         <p>מספר טלפון</p>
         <input type="text" id="phone_astma" />
+
+        
+        <br>
+
+        <p>אישור רפואי</p>
+        <input type="file" id="fileInput1">
+
+        <br>
+
+        <div class="preview">
+            <img id="previewImage1" src="" style="display: none;">
+            <div class="buttons">
+                <button id="deleteButton1">מחק תמונה</button>
+            </div>
+        </div>    
     </div>
 
-    <input type="checkbox" id="medicine" />
+    <br>
+
+    <input type="checkbox" id="medicine" onchange="medicine_check()"/>
     <label for="medicine">בני / בתי מקבל/ת טיפול תרופתי </label>
 
-    <div id="medicine_div">
+    <br>
+
+    <div id="medicine_div" style="display: none;">
         <p>סוג התרופה</p>
         <input type="text" id="medicine_type" />
         
@@ -111,23 +150,190 @@
         <input type="text" id="medicine_take" />
     </div>
 
-    <input type="checkbox" id="self" />
+    <br>
+
+    <input type="checkbox" id="self" onchange="self_check()"/>
     <label for="self">בני / בתי נעזר/ת בכוחות עצמו/עצמה בציוד רפואי - משאף, ערכת זריקות וכדו  </label>
 
-    <input type="text" id="self_text" />
+    <br>
+    <div id="self_text" style="display: none;">
+        <p>ציוד רפואי בשימוש אישי</p>
+        <input type="text"/>
+    </div>
+
+    <br>
+
 
     <input type="checkbox" id="sea" />
     <label for="sea"> הנני מאשר/ת לבני/בתי להשתתף בפעילות ימית</label>
 
+    <br>
+    <br>
+
+
     <input type="checkbox" id="swim" />
     <label for="swim">בני/בתי יודע/ת לשחות</label>
+
+    <br>
+    <br>
+
 
     <input type="checkbox" id="night" />
     <label for="night">אני מאשר/ת לבני/בתי להשתתף בפעילות של רחצת לילה</label>
 
+    <br>
+    <br>
+
+
     <p>תאריך החתימה</p>
-    <input type="date" id="sign_date" />
+    <input type="text" id="sign_date" />
 
     <p>שם ההורה</p>
     <input type="text" id="parent_name" />
+
+    <p>מספר תעדות זהות</p>
+    <input type="text" id="parent_id" />
+
+    <p>מספר טלפון נייד</p>
+    <input type="text" id="phone_number" />
+
+    <p>חתימת ההורה</p>
+    <canvas id="signature" onchange="canvas()" width="200" height="100"></canvas>
+
+    <br>
+    <br>
+    <button id="clearCanvas">Clear Canvas</button>
+
+
+    <script>
+        const canvas = document.getElementById('signature');
+        const context = canvas.getContext('2d');
+        const clearButton = document.getElementById('clearCanvas');
+
+
+        let isDrawing = false;
+
+        // Function to start drawing
+        canvas.addEventListener('mousedown', (event) => {
+            isDrawing = true;
+            context.beginPath(); // Begin a new path
+            context.moveTo(event.offsetX, event.offsetY); // Move to the mouse position
+        });
+
+        // Function to stop drawing
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+            context.closePath(); // End the path
+        });
+
+        // Function to draw on the canvas
+        canvas.addEventListener('mousemove', (event) => {
+            if (!isDrawing) return; // Only draw when the mouse is pressed
+            context.lineTo(event.offsetX, event.offsetY); // Draw a line to the current mouse position
+            context.strokeStyle = 'black'; // Set the stroke color
+            context.lineWidth = 2; // Set the stroke width
+            context.stroke(); // Apply the stroke
+        });
+        // Clear the canvas
+        clearButton.addEventListener('click', () => {
+            context.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
+        });
+    </script>
+    </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script>
+    flatpickr("#start_date", {
+        dateFormat: "d-m-Y",
+        locale: "he", // Hebrew locale for the calendar
+    });
+
+    flatpickr("#end_date", {
+        dateFormat: "d-m-Y",
+        locale: "he",
+    });
+    flatpickr("#sign_date", {
+        dateFormat: "d-m-Y",
+        locale: "he",
+    });
+    flatpickr("#date_of_birth", {
+        dateFormat: "d-m-Y",
+        locale: "he",
+    });
+   
+
+    const fileInput = document.getElementById("fileInput");
+    const previewImage = document.getElementById("previewImage");
+    const deleteButton = document.getElementById("deleteButton");
+    const fileInput1 = document.getElementById("fileInput1");
+    const previewImage1 = document.getElementById("previewImage1");
+    const deleteButton1 = document.getElementById("deleteButton1");
+
+    // Handle file input change
+    fileInput.addEventListener("change", function (event) {
+    const file = event.target.files[0]; // Get the selected file
+
+    if (file) {
+        // Validate the file type
+        if (!file.type.startsWith("image/")) {
+            alert("Please upload an image file.");
+            return;
+        }
+
+        // Use FileReader to read the file
+        const reader = new FileReader();
+
+        // Define the onload event to preview the image
+        reader.onload = function (e) {
+            previewImage.src = e.target.result; // Set the image source to the file data
+            previewImage.style.display = "block"; // Ensure the image is visible
+        };
+
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+    }
+    });
+    // Handle file input change
+    fileInput1.addEventListener("change", function (event) {
+    const file = event.target.files[0]; // Get the selected file
+
+    if (file) {
+        // Validate the file type
+        if (!file.type.startsWith("image/")) {
+            alert("Please upload an image file.");
+            return;
+        }
+
+        // Use FileReader to read the file
+        const reader = new FileReader();
+
+        // Define the onload event to preview the image
+        reader.onload = function (e) {
+            previewImage1.src = e.target.result; // Set the image source to the file data
+            previewImage1.style.display = "block"; // Ensure the image is visible
+        };
+
+        // Read the file as a data URL
+        reader.readAsDataURL(file);
+    }
+    });
+
+    // Handle delete button click
+    deleteButton.addEventListener("click", function () {
+    previewImage.src = ""; // Clear the image source
+    previewImage.style.display = "none"; // Hide the image
+    fileInput.value = ""; // Reset the file input
+    });
+    // Handle delete button click
+    deleteButton1.addEventListener("click", function () {
+    previewImage1.src = ""; // Clear the image source
+    previewImage1.style.display = "none"; // Hide the image
+    fileInput1.value = ""; // Reset the file input
+    });
+
+    
+</script>
+
 </body>
