@@ -2,19 +2,20 @@
     <title>אישור הורים צופי ים</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body dir="rtl">
     <div id="conatiner">
     <p>סוג פעילות</p>
     <select id="activity">
-        <option value="1">שישבת</option>
-        <option value="2">תחרות חתירה</option>
-        <option value="3">קורסים - מחנה קיץ</option>
-        <option value="4">טיול שבטי</option>
-        <option value="5">הפלגה ארוכה</option>
-        <option value="6">חתירה ארוכה</option>
-        <option value="7">הקפת כינרת</option>
-        <option value="8">חנוכה דרום</option>
+        <option value="שישבת">שישבת</option>
+        <option value="תחרות חתירה">תחרות חתירה</option>
+        <option value="קורסים - מחנה קיץ">קורסים - מחנה קיץ</option>
+        <option value="טיול שבטי">טיול שבטי</option>
+        <option value="הפלגה ארוכה">הפלגה ארוכה</option>
+        <option value="חתירה ארוכה">חתירה ארוכה</option>
+        <option value="הקפת כינרת">הקפת כינרת</option>
+        <option value="חנוכה דרום">חנוכה דרום</option>
     </select>
 
     <p>מקום הפעילות</p>
@@ -36,9 +37,9 @@
     <input type="text" id="id_number"/>
 
     <p>מגדר</p>
-    <input type="radio" id="boy" name="gender" value="boy" />
+    <input type="radio" id="boy" name="gender" value="זכר" />
     <label for="boy">זכר</label><br>
-    <input type="radio" id="girl" name="gender" value="girl" />
+    <input type="radio" id="girl" name="gender" value="נקבה" />
     <label for="girl">נקבה</label><br>
 
     <p>תאריך לידה</p>
@@ -46,20 +47,20 @@
 
     <p>כיתה</p>
     <select id="grade">
-        <option value="1">ה</option>
-        <option value="2">ו</option>
-        <option value="3">ז</option>
-        <option value="4">ח</option>
-        <option value="5">ט</option>
-        <option value="6">י</option>
-        <option value="7">יא</option>
-        <option value="8">יב</option>
+        <option value="ה">ה</option>
+        <option value="ו">ו</option>
+        <option value="ז">ז</option>
+        <option value="ח">ח</option>
+        <option value="ט">ט</option>
+        <option value="י">י</option>
+        <option value="יא">יא</option>
+        <option value="יב">יב</option>
     </select>
 
     <p>הצהרת בריאות</p>
     <select id="health" onchange="health_check()">
-        <option value="1">לא ידוע לי על מגבלה בריאותית המונעת מבני/בתי להשתתף בפעילות הנערכת בתנועת הצופים</option>
-        <option value="2">יש לבני/בתי מוגבלות בריאותית המונעת השתתפות מלאה/חלקית בפעילות הנדרשת</option>
+        <option value="8.3%">לא ידוע לי על מגבלה בריאותית המונעת מבני/בתי להשתתף בפעילות הנערכת בתנועת הצופים</option>
+        <option value="9.8%">יש לבני/בתי מוגבלות בריאותית המונעת השתתפות מלאה/חלקית בפעילות הנדרשת</option>
     </select><br>
 
     <div id="not_healthy" style="display: none;">
@@ -71,10 +72,8 @@
         <input type="checkbox" id="other_activity" />
         <label for="other_activity">פעילות אחרת</label>
 
-        <input type="text" id="other_activity_name">
-
         <p>תיאור המגבלה</p>
-        <input type="text" id="restriction_description" />
+        <input type="text" id="other_activity_name" />
 
         <p>אישור ניתן על ידי - שם מלא</p>
         <input type="text" id="doctor_name"/>
@@ -158,7 +157,7 @@
     <br>
     <div id="self_text" style="display: none;">
         <p>ציוד רפואי בשימוש אישי</p>
-        <input type="text"/>
+        <input type="text" id="helper_id"/>
     </div>
 
     <br>
@@ -198,11 +197,58 @@
     <input type="text" id="phone_number" />
 
     <p>חתימת ההורה</p>
-    <canvas id="signature" onchange="canvas()" width="200" height="100"></canvas>
+    <canvas id="signature" onchange="canvas()" onclick="openSignaturePopup()" width="90" height="40"></canvas>
 
     <br>
     <br>
     <button id="clearCanvas">Clear Canvas</button>
+
+    <br>
+
+    <div style="background-image: url('image.jpg')" class="aggree" id="image_take_this">
+        <p id="activity_p">שישבת</p>
+        <p id="location_p">תל אביב</p>
+        <p id="start_p">‎</p>
+        <p id="end_p">‎</p>
+        <p id="last_name_p">‎</p>
+        <p id="first_name_p">‎</p>
+        <p id="id_p">‎</p>
+        <p id="gender_p">‎</p>
+        <p id="dob_p">‎</p>
+        <p id="grade_p">‎</p>
+        <div id="circle_1"></div>
+        <p id="check_p1">✔</p>
+        <p id="check_p2">✔</p>
+        <p id="check_p3">✔</p>
+        <p id="other_yapping">‎</p>
+        <p id="name_doctor">‎</p>
+        <div id="circle_2"></div>
+        <p id="duration_x">‎</p>
+        <p id="load">‎</p>
+        <p id="d_n">‎</p>
+        <p id="duration_z">‎</p>
+        <div id="circle_3"></div>
+        <p id="med_tp">‎</p>
+        <p id="desc_med">‎</p>
+        <div id="circle_4"></div>
+        <p id="helper">‎</p>
+        <p id="d_now">‎</p>
+        <p id="p_n">‎</p>
+        <p id="id_n">‎</p>
+        <p id="ph_n">‎</p>
+        <canvas id="signature1" width="90" height="40"></canvas>
+        <p id="check_p4">✔</p>
+        <p id="check_p5">✔</p>
+        <div id="circle_5"></div>
+
+        <button onclick="takeshot()">Download image</button>
+
+        <br>
+
+        <div id="output"></div>
+
+    </div>
+
 
 
     <script>
@@ -233,10 +279,12 @@
             context.strokeStyle = 'black'; // Set the stroke color
             context.lineWidth = 2; // Set the stroke width
             context.stroke(); // Apply the stroke
+            document.getElementById("signature1").getContext('2d').drawImage(document.getElementById('signature'), 0,0)
         });
         // Clear the canvas
         clearButton.addEventListener('click', () => {
             context.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
+            document.getElementById("signature1").getContext('2d').clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
         });
     </script>
     </div>
@@ -333,7 +381,191 @@
     fileInput1.value = ""; // Reset the file input
     });
 
-    
-</script>
+    document.getElementById("activity").addEventListener("change", function () {
+        document.getElementById("activity_p").innerText = document.getElementById("activity").value;
+    });
+    document.getElementById("location").addEventListener("change", function () {
+        document.getElementById("location_p").innerText = document.getElementById("location").value;
+    });
+    document.getElementById("start_date").addEventListener("change", function () {
+        document.getElementById("start_p").innerText = document.getElementById("start_date").value;
+    });
+    document.getElementById("id_number").addEventListener("change", function () {
+        document.getElementById("id_p").innerText = document.getElementById("id_number").value;
+    });
+    document.getElementById("end_date").addEventListener("change", function () {
+        document.getElementById("end_p").innerText = document.getElementById("end_date").value;
+    });
+    document.getElementById("last_name").addEventListener("change", function () {
+        document.getElementById("last_name_p").innerText = document.getElementById("last_name").value;
+    });
+    document.getElementById("first_name").addEventListener("change", function () {
+        document.getElementById("first_name_p").innerText = document.getElementById("first_name").value;
+    });
+    document.getElementById("id_number").addEventListener("change", function () {
+        document.getElementById("id_number_p").innerText = document.getElementById("id_number").value;
+    });
+    document.getElementById("boy").addEventListener("change", function () {
+        document.getElementById("gender_p").innerText = document.querySelector('input[name="gender"]:checked').value;
+    });
+    document.getElementById("girl").addEventListener("change", function () {
+        document.getElementById("gender_p").innerText = document.querySelector('input[name="gender"]:checked').value;
+    }); 
+    document.getElementById("date_of_birth").addEventListener("change", function () {
+        document.getElementById("dob_p").innerText = document.getElementById("date_of_birth").value;
+    });
+    document.getElementById("grade").addEventListener("change", function () {
+        document.getElementById("grade_p").innerText = document.getElementById("grade").value;
+    });
+    document.getElementById("health").addEventListener("change", function () {
+        document.getElementById("circle_1").style.top = document.getElementById("health").value;
+    });
+    document.getElementById("physical_activity").addEventListener("change", function () {
+        if (document.getElementById("physical_activity").checked){
+            document.getElementById("check_p1").style.visibility = "visible";
+        }else {
+            document.getElementById("check_p1").style.visibility = "hidden";
+        }
+    });
+    document.getElementById("trips").addEventListener("change", function () {
+        if (document.getElementById("trips").checked){
+            document.getElementById("check_p2").style.visibility = "visible";
+        }else {
+            document.getElementById("check_p2").style.visibility = "hidden";
+        }    });
+    document.getElementById("other_activity").addEventListener("change", function () {
+        if (document.getElementById("other_activity").checked){
+            document.getElementById("check_p3").style.visibility = "visible";
+        }else {
+            document.getElementById("check_p3").style.visibility = "hidden";
+        }    });
+    document.getElementById("other_activity_name").addEventListener("change", function () {
+        document.getElementById("other_yapping").innerText = document.getElementById("other_activity_name").value;
+    });
+    document.getElementById("doctor_name").addEventListener("change", function () {
+        document.getElementById("name_doctor").innerText = document.getElementById("doctor_name").value;
+    });
+    document.getElementById("duration").addEventListener("change", function () {
+        document.getElementById("duration_x").innerText = document.getElementById("duration").value;
+    });
+    document.getElementById("doctor_name_astma").addEventListener("change", function () {
+        document.getElementById("d_n").innerText = document.getElementById("doctor_name_astma").value;
+    });
+    document.getElementById("duration_astma").addEventListener("change", function () {
+        document.getElementById("duration_z").innerText = document.getElementById("duration_astma").value;
+    });
+    document.getElementById("name_astma").addEventListener("change", function () {
+        document.getElementById("load").innerText = document.getElementById("name_astma").value + " " + document.getElementById("addr").value + " " + document.getElementById("phone_astma").value;
+    });
+    document.getElementById("addr").addEventListener("change", function () {
+        document.getElementById("load").innerText = document.getElementById("name_astma").value + " " + document.getElementById("addr").value + " " + document.getElementById("phone_astma").value;
+    });
+    document.getElementById("phone_astma").addEventListener("change", function () {
+        document.getElementById("load").innerText = document.getElementById("name_astma").value + " " + document.getElementById("addr").value + " " + document.getElementById("phone_astma").value;
+    });
+    document.getElementById("medicine_type").addEventListener("change", function () {
+        document.getElementById("med_tp").innerText = document.getElementById("medicine_type").value;
+    });
+    document.getElementById("medicine_take").addEventListener("change", function () {
+        document.getElementById("desc_med").innerText = document.getElementById("medicine_take").value;
+    });
+    document.getElementById("helper_id").addEventListener("change", function () {
+        document.getElementById("helper").innerText = document.getElementById("helper_id").value;
+    });
+    document.getElementById("sign_date").addEventListener("change", function () {
+        document.getElementById("d_now").innerText = document.getElementById("sign_date").value;
+    });
+    document.getElementById("parent_name").addEventListener("change", function () {
+        document.getElementById("p_n").innerText = document.getElementById("parent_name").value;
+    }); 
+    document.getElementById("parent_id").addEventListener("change", function () {
+        document.getElementById("id_n").innerText = document.getElementById("parent_id").value;
+    });
+    document.getElementById("phone_number").addEventListener("change", function () {
+        document.getElementById("ph_n").innerText = document.getElementById("phone_number").value;
+    });
+    document.getElementById("signature").addEventListener("change", function () {
+        document.getElementById("signature1").getContext('2d').drawImage(document.getElementById('signature'), 0,0)
+    });
+    document.getElementById("swim").addEventListener("click", function () {
+        if (document.getElementById("swim").checked){
+            document.getElementById("check_p4").style.left = "26%";
+        }else{
+            document.getElementById("check_p4").style.left = "14%";
 
+        }
+    });
+    document.getElementById("night").addEventListener("click", function () {
+        if (document.getElementById("night").checked){
+            document.getElementById("check_p5").style.left = "29%";
+        }else{
+            document.getElementById("check_p5").style.left = "17%";
+
+        }
+    });
+    document.getElementById("astma").addEventListener("change", function() {
+        if(document.getElementById("astma").checked){
+            document.getElementById("circle_2").style.visibility = "visible";
+        }else {
+            document.getElementById("circle_2").style.visibility = "hidden";
+
+        }
+    });
+    document.getElementById("medicine").addEventListener("change", function() {
+        if(document.getElementById("medicine").checked){
+            document.getElementById("circle_3").style.visibility = "visible";
+        }else {
+            document.getElementById("circle_3").style.visibility = "hidden";
+
+        }
+    });
+    document.getElementById("self").addEventListener("change", function() {
+        if(document.getElementById("self").checked){
+            document.getElementById("circle_4").style.visibility = "visible";
+        }else {
+            document.getElementById("circle_4").style.visibility = "hidden";
+
+        }
+    });
+    document.getElementById("sea").addEventListener("change", function() {
+        if(document.getElementById("sea").checked){
+            document.getElementById("circle_5").style.visibility = "visible";
+        }else {
+            document.getElementById("circle_5").style.visibility = "hidden";
+
+        }
+    });
+</script>
+<script src=
+"https://html2canvas.hertzen.com/dist/html2canvas.min.js">
+    </script>
+
+<script type="text/javascript">
+    function Download() {
+        let link = document.createElement("a");
+        link.download = "אישור הורים.png";
+        link.href = document.getElementById("output").toDataURL("image/png");
+        link.click();
+    }
+
+    // Define the function 
+    // to screenshot the div
+    function takeshot() {
+        let div =
+            document.getElementById('image_take_this');
+
+        // Use the html2canvas
+        // function to take a screenshot
+        // and append it
+        // to the output div
+        html2canvas(div).then(
+            function (canvas) {
+                document
+                .getElementById('output')
+                .appendChild(canvas);
+            });
+
+            Download();
+    }
+</script>
 </body>
